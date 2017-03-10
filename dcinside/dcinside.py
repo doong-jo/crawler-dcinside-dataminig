@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from bs4 import BeautifulSoup
 import time
 from selenium import webdriver
@@ -6,11 +8,15 @@ from selenium.webdriver.common.keys import Keys
 import odbc
 import re
 
-
 try:
     import urllib.request as urllib2
 except ImportError:
     import urllib2
+
+
+
+
+
 
 "DB연결"
 connect = odbc.odbc('Test')
@@ -19,6 +25,14 @@ db = connect.cursor()
 gallList = []
 gallUpDateList = []
 listNumber = 3
+
+
+
+
+
+
+
+##################################################################################################################################################################################################
 
 def createGallListWithSelenium():
 
@@ -123,7 +137,7 @@ def insert_SumCnt_ArticleAndView_FromDB(_db, _galleryName, _dateList):
 
 "웹크롤링 수행"
 def crawling(_gallList, _gallUpDateList):
-    k = 13
+    k = 0
     i = 0
     j = 0
 
@@ -257,15 +271,15 @@ def crawling(_gallList, _gallUpDateList):
         k = k + 1
 
 ##################################################################################################################################################################################################
+
+
+
+
+
+
+
 "동적 웹 크롤링 (셀리니움) / 갤러리 리스트 및 승격일 리스트 생성"
 createGallListWithSelenium()
 
 "웹크롤링 수행"
 crawling(gallList, gallUpDateList)
-    # db.execute("select * from test.dcinside_gall where date_ like '" + dateList + "%'")
-    #
-    # table = db.fetchall()
-    # len(table)
-    #
-    # db.execute("insert into test.dcinside_count (_gallery, _month, _article_count) " \
-    #            "Values ('%s', '%s', '%s')" % (galleryName, str(year) + str(month), len(table)))
